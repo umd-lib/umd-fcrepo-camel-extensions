@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0" name="umd-fcrepo-camel-extensions-${project.version}">
+  <repository>mvn:org.fcrepo.camel/fcrepo-camel/${fcrepo-camel.version}/xml/features</repository>
+
+  <feature name="umd-fcrepo-event-router" version="${project.version}">
+    <details>Installs the UMD's fcrepo event router service.</details>
+
+    <bundle>mvn:edu.umd.lib.camel/umd-fcrepo-event-router/${project.version}</bundle>
+
+    <configfile finalname="/etc/edu.umd.lib.camel.router.cfg">mvn:edu.umd.lib.camel/umd-fcrepo-event-router/${project.version}/cfg/configuration</configfile>
+  </feature>
+</features>
