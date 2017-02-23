@@ -36,13 +36,18 @@
         <!-- dependencies -->
         <activemq.version>5.14.1</activemq.version>
         <camel.version>2.18.0</camel.version>
+        <marmotta.version>3.3.0</marmotta.version>
         <fcrepo-camel.version>4.5.0</fcrepo-camel.version>
+        <fcrepo-camel-toolbox.version>4.7.1</fcrepo-camel-toolbox.version>
+        <fcrepo-java-client.version>0.2.1</fcrepo-java-client.version>
         <logback.version>1.1.7</logback.version>
         <slf4j.version>1.7.20</slf4j.version>
     </properties>
 
     <modules>
         <module>umd-fcrepo-event-router</module>
+        <module>umd-fcrepo-ldpath-blueprint</module>
+        <module>umd-fcrepo-batch-ldcache-file</module>
         <module>umd-features</module>
     </modules>
 
@@ -73,6 +78,16 @@
                 <artifactId>activemq-pool</artifactId>
                 <version>${activemq.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.marmotta</groupId>
+                <artifactId>ldcache-api</artifactId>
+                <version>${marmotta.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.marmotta</groupId>
+                <artifactId>ldcache-backend-file</artifactId>
+                <version>${marmotta.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.fcrepo.camel</groupId>
@@ -88,6 +103,11 @@
                     <artifactId>log4j</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.fcrepo.camel</groupId>
+                <artifactId>fcrepo-ldpath</artifactId>
+                <version>${fcrepo-camel-toolbox.version}</version>
             </dependency>
 
             <!-- logging -->

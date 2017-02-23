@@ -1,12 +1,48 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0" name="umd-fcrepo-camel-extensions-${project.version}">
-  <repository>mvn:org.fcrepo.camel/fcrepo-camel/${fcrepo-camel.version}/xml/features</repository>
+  <repository>mvn:org.fcrepo.camel/toolbox-features/${fcrepo-camel-toolbox.version}/xml/features</repository>
 
   <feature name="umd-fcrepo-event-router" version="${project.version}">
-    <details>Installs the UMD's fcrepo event router service.</details>
+    <details>Installs the UMD fcrepo event router service.</details>
 
     <bundle>mvn:edu.umd.lib.camel/umd-fcrepo-event-router/${project.version}</bundle>
 
     <configfile finalname="/etc/edu.umd.lib.camel.router.cfg">mvn:edu.umd.lib.camel/umd-fcrepo-event-router/${project.version}/cfg/configuration</configfile>
   </feature>
+
+  <feature name="fcrepo-indexing-solr-umd" version="${project.version}">
+    <details>Installs the fcrepo solr indexer with umd-fcrepo-ldpath</details>
+
+    <bundle>mvn:org.fcrepo.camel/fcrepo-indexing-solr-blueprint/${fcrepo-camel-toolbox.version}</bundle>
+    <feature version="${fcrepo-camel-toolbox.version}">fcrepo-indexing-solr-core</feature>
+    <feature version="${project.version}">umd-fcrepo-ldpath</feature>
+
+    <configfile finalname="/etc/org.fcrepo.camel.indexing.solr.cfg">mvn:org.fcrepo.camel/fcrepo-indexing-solr-blueprint/${fcrepo-camel-toolbox.version}/cfg/configuration</configfile>
+  </feature>
+
+  <feature name="umd-fcrepo-ldpath" version="${project.version}">
+    <details>Installs the UMD fcrepo ldpath service</details>
+
+    <bundle>mvn:edu.umd.lib.camel/umd-fcrepo-ldpath-blueprint/${project.version}</bundle>
+    <bundle>mvn:org.fcrepo.client/fcrepo-java-client/${fcrepo-java-client.version}</bundle>
+    <feature version="${fcrepo-camel-toolbox.version}">fcrepo-ldpath-core</feature>
+    <feature version="${project.version}">umd-fcrepo-batch-ldcache-file</feature>
+    <feature version="${fcrepo-camel-toolbox.version}">fcrepo-service-ldcache-file</feature>
+
+    <configfile finalname="/etc/edu.umd.lib.camel.ldpath.cfg">mvn:edu.umd.lib.camel/umd-fcrepo-ldpath-blueprint/${project.version}/cfg/configuration</configfile>
+  </feature>
+
+  <feature name="umd-fcrepo-batch-ldcache-file" version="${project.version}">
+    <details>Installs the umd batch ldcache backend</details>
+
+    <bundle>mvn:edu.umd.lib.camel/umd-fcrepo-batch-ldcache-file/${project.version}</bundle>
+
+    <feature prerequisite="true">wrap</feature>
+    <feature version="${fcrepo-camel-toolbox.version}">fcrepo-marmotta-osgi</feature>
+
+    <bundle dependency="true">wrap:mvn:org.apache.marmotta/ldcache-backend-file/${marmotta.version}</bundle>
+
+    <configfile finalname="/etc/edu.umd.lib.camel.ldcache.file.cfg">mvn:edu.umd.lib.camel/umd-fcrepo-batch-ldcache-file/${project.version}/cfg/configuration</configfile>
+  </feature>
+
 </features>
