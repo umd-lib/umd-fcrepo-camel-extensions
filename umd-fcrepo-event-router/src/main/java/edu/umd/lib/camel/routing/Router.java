@@ -32,6 +32,8 @@ public class Router extends RouteBuilder{
 
     private static final String JMS_USER = "org.fcrepo.jms.user";
 
+    private static final String BATCH_HEADER = "UMDBatchEvent";
+
     public void configure() throws Exception {
 
         /*
@@ -58,11 +60,15 @@ public class Router extends RouteBuilder{
 
         from("direct:batch.queue")
             .log(LoggingLevel.DEBUG, logger, "Routed to batch queue.")
-            .filter(not(and(simple("{{batch.skip.pcdm.container}} == 'true'"),
-                        simple(headerString(JMS_IDENTIFIER) + " == '/pcdm'"))))
-            .log(LoggingLevel.DEBUG, logger, "Event not filtered.")
-            .setHeader("JMSPriority").simple("{{batch.jms.priority}}").end()
-            .to("broker:{{batch.queue.name}}");
+            .choice()
+                .when(and(simple("{{batch.skip.pcdm.container}} == 'true'"),
+                        simple(headerString(JMS_IDENTIFIER) + " == '/pcdm'")))
+                    .log(LoggingLevel.DEBUG, logger, "Suppressing '/pcdm' node event for batch user.")
+                    .stop()
+                .otherwise()
+                    .setHeader("JMSPriority").simple("{{batch.jms.priority}}").end()
+                    .setHeader(BATCH_HEADER).simple("true").end()
+                    .to("broker:{{batch.queue.name}}");
 
         from("direct:live.queue")
             .log(LoggingLevel.DEBUG, logger, "Routed to live queue.")
