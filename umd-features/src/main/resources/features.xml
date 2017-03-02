@@ -10,7 +10,7 @@
     <configfile finalname="/etc/edu.umd.lib.camel.router.cfg">mvn:edu.umd.lib.camel/umd-fcrepo-event-router/${project.version}/cfg/configuration</configfile>
   </feature>
 
-  <feature name="fcrepo-indexing-solr-umd" version="${project.version}">
+  <feature name="umd-fcrepo-indexing-solr" version="${project.version}">
     <details>Installs the fcrepo solr indexer with umd-fcrepo-ldpath</details>
 
     <bundle>mvn:org.fcrepo.camel/fcrepo-indexing-solr-blueprint/${fcrepo-camel-toolbox.version}</bundle>

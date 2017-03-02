@@ -22,7 +22,7 @@ Install the modules in the following order to setup the batch caching.
 feature:install fcrepo-service-ldcache-file
 feature:install umd-fcrepo-batch-ldcache-file
 feature:install umd-fcrepo-ldpath
-feature:install fcrepo-indexing-solr-umd
+feature:install umd-fcrepo-indexing-solr
 ```
 
 **Note:** The `fcrepo-ldpath` and `fcrepo-indexing-solr` modules should be uninstalled before installing the caching modules. 
