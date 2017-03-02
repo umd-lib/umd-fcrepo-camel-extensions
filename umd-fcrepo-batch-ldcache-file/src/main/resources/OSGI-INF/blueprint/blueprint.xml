@@ -24,7 +24,7 @@
   <ext:property-placeholder placeholder-prefix="$[" placeholder-suffix="]"/>
 
   <!-- OSGi blueprint property placeholder -->
-  <cm:property-placeholder persistent-id="edu.umd.lib.camel.ldcache.file" update-strategy="reload" >
+  <cm:property-placeholder persistent-id="edu.umd.lib.fcrepo.camel.ldcache.file" update-strategy="reload" >
     <cm:default-properties>
       <cm:property name="batch.ldcache.directory" value="$[karaf.data]/batchldcache"/>
     </cm:default-properties>

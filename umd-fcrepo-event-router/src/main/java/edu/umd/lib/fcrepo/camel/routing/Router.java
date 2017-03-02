@@ -14,10 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.umd.lib.camel.routing;
+package edu.umd.lib.fcrepo.camel.routing;
 
 import static org.apache.camel.builder.PredicateBuilder.and;
-import static org.apache.camel.builder.PredicateBuilder.not;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import org.apache.camel.LoggingLevel;

@@ -5,9 +5,9 @@
   <feature name="umd-fcrepo-event-router" version="${project.version}">
     <details>Installs the UMD fcrepo event router service.</details>
 
-    <bundle>mvn:edu.umd.lib.camel/umd-fcrepo-event-router/${project.version}</bundle>
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-event-router/${project.version}</bundle>
 
-    <configfile finalname="/etc/edu.umd.lib.camel.router.cfg">mvn:edu.umd.lib.camel/umd-fcrepo-event-router/${project.version}/cfg/configuration</configfile>
+    <configfile finalname="/etc/edu.umd.lib.fcrepo.camel.router.cfg">mvn:edu.umd.lib.fcrepo/umd-fcrepo-event-router/${project.version}/cfg/configuration</configfile>
   </feature>
 
   <feature name="umd-fcrepo-indexing-solr" version="${project.version}">
@@ -23,26 +23,26 @@
   <feature name="umd-fcrepo-ldpath" version="${project.version}">
     <details>Installs the UMD fcrepo ldpath service</details>
 
-    <bundle>mvn:edu.umd.lib.camel/umd-fcrepo-ldpath-blueprint/${project.version}</bundle>
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-ldpath-blueprint/${project.version}</bundle>
     <bundle>mvn:org.fcrepo.client/fcrepo-java-client/${fcrepo-java-client.version}</bundle>
     <feature version="${fcrepo-camel-toolbox.version}">fcrepo-ldpath-core</feature>
     <feature version="${project.version}">umd-fcrepo-batch-ldcache-file</feature>
     <feature version="${fcrepo-camel-toolbox.version}">fcrepo-service-ldcache-file</feature>
 
-    <configfile finalname="/etc/edu.umd.lib.camel.ldpath.cfg">mvn:edu.umd.lib.camel/umd-fcrepo-ldpath-blueprint/${project.version}/cfg/configuration</configfile>
+    <configfile finalname="/etc/edu.umd.lib.fcrepo.camel.ldpath.cfg">mvn:edu.umd.lib.fcrepo/umd-fcrepo-ldpath-blueprint/${project.version}/cfg/configuration</configfile>
   </feature>
 
   <feature name="umd-fcrepo-batch-ldcache-file" version="${project.version}">
     <details>Installs the umd batch ldcache backend</details>
 
-    <bundle>mvn:edu.umd.lib.camel/umd-fcrepo-batch-ldcache-file/${project.version}</bundle>
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-batch-ldcache-file/${project.version}</bundle>
 
     <feature prerequisite="true">wrap</feature>
     <feature version="${fcrepo-camel-toolbox.version}">fcrepo-marmotta-osgi</feature>
 
     <bundle dependency="true">wrap:mvn:org.apache.marmotta/ldcache-backend-file/${marmotta.version}</bundle>
 
-    <configfile finalname="/etc/edu.umd.lib.camel.ldcache.file.cfg">mvn:edu.umd.lib.camel/umd-fcrepo-batch-ldcache-file/${project.version}/cfg/configuration</configfile>
+    <configfile finalname="/etc/edu.umd.lib.fcrepo.camel.ldcache.file.cfg">mvn:edu.umd.lib.fcrepo/umd-fcrepo-batch-ldcache-file/${project.version}/cfg/configuration</configfile>
   </feature>
 
 </features>

@@ -7,7 +7,7 @@ Uses fcrepo-camel-toolbox version 4.7.1.
 Add the umd-features repository to karaf.
 
 ```
-repo-add mvn:edu.umd.lib.camel/umd-features/<VERSION>/xml/features
+repo-add mvn:edu.umd.lib.fcrepo/umd-features/<VERSION>/xml/features
 ```
 
 Install the UMD Fcrepo Event Router module.

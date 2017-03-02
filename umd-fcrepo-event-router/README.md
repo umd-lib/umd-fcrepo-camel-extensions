@@ -5,4 +5,4 @@
 * Provides option to suppress pcdm container node indexing in batch mode.
 * Provides option to set JMSPriority for batch events.
 
-See [configuration file](src/main/cfg/edu.umd.lib.camel.router.cfg).
+See [configuration file](src/main/cfg/edu.umd.lib.fcrepo.camel.router.cfg).

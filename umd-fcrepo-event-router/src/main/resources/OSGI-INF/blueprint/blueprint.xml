@@ -20,7 +20,7 @@
            default-activation="lazy">
 
   <!-- OSGI blueprint property placeholder -->
-   <cm:property-placeholder id="properties" persistent-id="edu.umd.lib.camel.router" update-strategy="reload">
+   <cm:property-placeholder id="properties" persistent-id="edu.umd.lib.fcrepo.camel.router" update-strategy="reload">
      <cm:default-properties>
        <cm:property name="error.maxRedeliveries" value="10"/>
        <cm:property name="input.queue.name" value="queue:fedora"/>
@@ -35,7 +35,7 @@
   <reference id="broker" interface="org.apache.camel.Component" filter="(osgi.jndi.service.name=fcrepo/Broker)"/>
 
   <camelContext id="UmdFcrepoEventRouter" xmlns="http://camel.apache.org/schema/blueprint">
-    <package>edu.umd.lib.camel.routing</package>
+    <package>edu.umd.lib.fcrepo.camel.routing</package>
   </camelContext>
 
 </blueprint>
