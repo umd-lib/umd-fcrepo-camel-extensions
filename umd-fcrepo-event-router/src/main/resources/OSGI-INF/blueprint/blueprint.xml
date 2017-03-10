@@ -24,8 +24,10 @@
      <cm:default-properties>
        <cm:property name="error.maxRedeliveries" value="10"/>
        <cm:property name="input.queue.name" value="queue:fedora"/>
-       <cm:property name="batch.queue.name" value="queue:fedorafiltered"/>
-       <cm:property name="live.queue.name" value="queue:fedorafiltered"/>
+       <cm:property name="batch.solrqueue.name" value="queue:fedorasolr"/>
+       <cm:property name="live.solrqueue.name" value="queue:fedorasolr"/>
+       <cm:property name="batch.triplestorequeue.name" value="queue:fedoratriplestore"/>
+       <cm:property name="live.triplestorequeue.name" value="queue:fedoratriplestore"/>
        <cm:property name="batch.user" value=""/>
        <cm:property name="batch.jms.priority" value="4"/>
        <cm:property name="batch.skip.pcdm.container" value="true"/>
