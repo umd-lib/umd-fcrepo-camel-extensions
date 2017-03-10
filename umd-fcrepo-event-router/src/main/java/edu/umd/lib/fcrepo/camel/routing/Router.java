@@ -67,11 +67,13 @@ public class Router extends RouteBuilder{
                 .otherwise()
                     .setHeader("JMSPriority").simple("{{batch.jms.priority}}").end()
                     .setHeader(BATCH_HEADER).simple("true").end()
-                    .to("broker:{{batch.queue.name}}");
+                    .multicast()
+                    .to("broker:{{batch.solrqueue.name}}", "broker:{{batch.triplestorequeue.name}}");
 
         from("direct:live.queue")
             .log(LoggingLevel.DEBUG, logger, "Routed to live queue.")
-            .to("broker:{{live.queue.name}}");
+            .multicast()
+            .to("broker:{{live.solrqueue.name}}", "broker:{{live.triplestorequeue.name}}");
     }
 
     private String headerString(String headerName) {
