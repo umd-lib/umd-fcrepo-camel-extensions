@@ -1,7 +1,7 @@
 # UMD Fcrepo Camel Extensions
 Extensions to the fcrepo-camel-toolbox for UMD's custom routes and configurations.
 
-Uses fcrepo-camel-toolbox version 4.7.1.
+Uses fcrepo-camel-toolbox version 4.7.2.
 
 ## Installation
 Add the umd-features repository to karaf.
