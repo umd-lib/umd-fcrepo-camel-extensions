@@ -17,6 +17,7 @@
 package edu.umd.lib.fcrepo.camel.routing;
 
 import static org.apache.camel.builder.PredicateBuilder.and;
+import static org.apache.camel.builder.PredicateBuilder.or;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import org.apache.camel.LoggingLevel;
@@ -44,7 +45,7 @@ public class Router extends RouteBuilder{
 
         /*
          * route a message to the proper queue, based on whether
-         * it is a DELETE or UPDATE operation.
+         * it is a live event or batch event
          */
         from("broker:{{input.queue.name}}")
             .routeId("UmdFcrepoEventRouter")
@@ -60,9 +61,17 @@ public class Router extends RouteBuilder{
         from("direct:batch.queue")
             .log(LoggingLevel.DEBUG, logger, "Routed to batch queue.")
             .choice()
-                .when(and(simple("{{batch.skip.pcdm.container}} == 'true'"),
-                        simple(headerString(JMS_IDENTIFIER) + " == '/pcdm'")))
-                    .log(LoggingLevel.DEBUG, logger, "Suppressing '/pcdm' node event for batch user.")
+                .when(
+                    or(
+                        and(
+                            simple("{{batch.skip.pcdm.container}} == 'true'"),
+                            simple(headerString(JMS_IDENTIFIER) + " == '/pcdm'")
+                        ),
+                        simple(headerString(JMS_IDENTIFIER) + " in {{batch.skip.paths}}")
+                    )
+                    )
+                    .log(LoggingLevel.DEBUG, logger,
+                        "Suppressing '" + headerString(JMS_IDENTIFIER) + "' node event for batch user.")
                     .stop()
                 .otherwise()
                     .setHeader("JMSPriority").simple("{{batch.jms.priority}}").end()
