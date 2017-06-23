@@ -67,7 +67,7 @@ public class Router extends RouteBuilder{
                             simple("{{batch.skip.pcdm.container}} == 'true'"),
                             simple(headerString(JMS_IDENTIFIER) + " == '/pcdm'")
                         ),
-                        simple(headerString(JMS_IDENTIFIER) + " in {{batch.skip.paths}}")
+                        simple(headerString(JMS_IDENTIFIER) + " in '{{batch.skip.paths}}'")
                     )
                     )
                     .log(LoggingLevel.DEBUG, logger,
