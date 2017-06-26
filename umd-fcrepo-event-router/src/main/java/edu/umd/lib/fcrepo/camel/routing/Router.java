@@ -61,15 +61,7 @@ public class Router extends RouteBuilder{
         from("direct:batch.queue")
             .log(LoggingLevel.DEBUG, logger, "Routed to batch queue.")
             .choice()
-                .when(
-                    or(
-                        and(
-                            simple("{{batch.skip.pcdm.container}} == 'true'"),
-                            simple(headerString(JMS_IDENTIFIER) + " == '/pcdm'")
-                        ),
-                        simple(headerString(JMS_IDENTIFIER) + " in '{{batch.skip.paths}}'")
-                    )
-                    )
+                .when(simple(headerString(JMS_IDENTIFIER) + " in '{{batch.skip.paths}}'"))
                     .log(LoggingLevel.DEBUG, logger,
                         "Suppressing '" + headerString(JMS_IDENTIFIER) + "' node event for batch user.")
                     .stop()
