@@ -16,8 +16,6 @@
  */
 package edu.umd.lib.fcrepo.camel.routing;
 
-import static org.apache.camel.builder.PredicateBuilder.and;
-import static org.apache.camel.builder.PredicateBuilder.or;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import org.apache.camel.LoggingLevel;
@@ -63,7 +61,11 @@ public class Router extends RouteBuilder{
             .choice()
                 .when(simple(headerString(JMS_IDENTIFIER) + " in '{{batch.skip.paths}}'"))
                     .log(LoggingLevel.DEBUG, logger,
-                        "Suppressing '" + headerString(JMS_IDENTIFIER) + "' node event for batch user.")
+                        "Skip path detected. Suppressing '" + headerString(JMS_IDENTIFIER) + "' node event for batch user.")
+                    .stop()
+                .when(simple(headerString(JMS_IDENTIFIER) + " contains '#'"))
+                    .log(LoggingLevel.DEBUG, logger,
+                        "URI with fragment detected. Suppressing '" + headerString(JMS_IDENTIFIER) + "' node event for batch user.")
                     .stop()
                 .otherwise()
                     .setHeader("JMSPriority").simple("{{batch.jms.priority}}").end()
