@@ -48,6 +48,11 @@
             <artifactId>umd-fcrepo-batch-ldcache-file</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>edu.umd.lib.fcrepo</groupId>
+            <artifactId>umd-fcrepo-broadcast</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
