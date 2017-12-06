@@ -25,8 +25,14 @@ feature:install umd-fcrepo-ldpath
 feature:install umd-fcrepo-indexing-solr
 ```
 
-**Note:** The `fcrepo-ldpath` and `fcrepo-indexing-solr` modules should be uninstalled before installing the caching modules. 
+**Note:** The `fcrepo-ldpath` and `fcrepo-indexing-solr` modules should be uninstalled before installing the caching modules.
+
+Install the UMD Fcrepo Broadcast module.
+
+```
+feature:install umd-fcrepo-broadcast
+```
 
 ## License
- 
+
 See the [LICENSE](LICENSE.md) file for license rights and limitations (Apache 2.0).

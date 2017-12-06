@@ -1,2 +1,6 @@
 **/target
 
+# Ignore Eclipse configuration files
+.settings/
+.project
+.classpath

@@ -35,6 +35,8 @@
 
         <!-- dependencies -->
         <activemq.version>5.14.1</activemq.version>
+        <osgi-core.version>5.0.0</osgi-core.version>
+        <osgi-compendium.version>5.0.0</osgi-compendium.version>
         <camel.version>2.18.0</camel.version>
         <marmotta.version>3.3.0</marmotta.version>
         <fcrepo-camel.version>4.5.0</fcrepo-camel.version>
@@ -49,10 +51,21 @@
         <module>umd-fcrepo-ldpath-blueprint</module>
         <module>umd-fcrepo-batch-ldcache-file</module>
         <module>umd-features</module>
+        <module>umd-fcrepo-broadcast</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.core</artifactId>
+                <version>${osgi-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.compendium</artifactId>
+                <version>${osgi-compendium.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-core</artifactId>

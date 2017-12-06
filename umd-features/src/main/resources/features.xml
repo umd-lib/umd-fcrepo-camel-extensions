@@ -45,4 +45,13 @@
     <configfile finalname="/etc/edu.umd.lib.fcrepo.camel.ldcache.file.cfg">mvn:edu.umd.lib.fcrepo/umd-fcrepo-batch-ldcache-file/${project.version}/cfg/configuration</configfile>
   </feature>
 
+  <feature name="umd-fcrepo-broadcast" version="${project.version}">
+    <details>Installs the UMD broadcast service.</details>
+
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-broadcast/${project.version}</bundle>
+<!-- 
+    <configfile finalname="/etc/edu.umd.lib.fcrepo.camel.broadcast.cfg">mvn:edu.umd.lib.fcrepo/umd-fcrepo-broadcast/${project.version}/cfg/configuration</configfile>
+     -->
+  </feature>
+
 </features>
