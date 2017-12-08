@@ -49,9 +49,12 @@
     <details>Installs the UMD broadcast service.</details>
 
     <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-broadcast/${project.version}</bundle>
-<!-- 
-    <configfile finalname="/etc/edu.umd.lib.fcrepo.camel.broadcast.cfg">mvn:edu.umd.lib.fcrepo/umd-fcrepo-broadcast/${project.version}/cfg/configuration</configfile>
-     -->
+  </feature>
+
+  <feature name="umd-fcrepo-sparql-query" version="${project.version}">
+    <details>Installs the UMD SPARQL query service.</details>
+
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-sparql-query/${project.version}</bundle>
   </feature>
 
 </features>
