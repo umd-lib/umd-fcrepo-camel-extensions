@@ -33,6 +33,12 @@ Install the UMD Fcrepo Broadcast module.
 feature:install umd-fcrepo-broadcast
 ```
 
+Install the UMD SPARQL Query module.
+
+```
+feature:install umd-fcrepo-sparql-query
+```
+
 ## License
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (Apache 2.0).
