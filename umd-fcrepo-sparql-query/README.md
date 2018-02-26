@@ -2,14 +2,15 @@
 
 * Runs a SPARQL query on the messages from the "input.stream" queue/topic
 sending the query results to the "output.stream" queue/topic.
-* Multiple service instances can be created
+* Multiple service instances can be created.
+* Supports `SELECT` and `CONSTRUCT` SPARQL queries.
 * The format of the SPARQL query results is configurable.
 
 ## Configuration
 
 A service instance is created by adding an
-"edu.umd.lib.fcrepo.camel.sparql.query-[ROUTE_IDENTIFIER].cfg" file
-into the Karaf etc/ directory, where [ROUTE_IDENTIFIER] is a unique name for
+`edu.umd.lib.fcrepo.camel.sparql.query-[ROUTE_IDENTIFIER.cfg` file
+into the Karaf etc/ directory, where `[ROUTE_IDENTIFIER]` is a unique name for
 the route.
 
 ### Example Configuration:
@@ -86,11 +87,15 @@ This line includes each of the variables in the SPARQL SELECT statement
 (a timestamp, the URI of the checked file, the event outcomes (grouped together
 and separated by a "|"), the file size, and the message digest).
 
-### Result Formats
+### Supported Result Formats
 
-The "results.format" property will accept:
+#### `SELECT` Queries
 
-* Any names in the org.apache.jena.sparql.resultset.ResultsFormat class (i.e.,
+* Any names in the [org.apache.jena.sparql.resultset.ResultsFormat](https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/resultset/ResultsFormat.html) class (i.e.,
 "csv", "tuples", "turtle", "n-triples", etc.)
-* The custom "csvWithoutHeader" value, which works like the "cvs" format in the
+* The custom "csvWithoutHeader" value, which works like the "csv" format in the
 Jena ResultsFormat format class, only without printing a header row.
+
+#### `CONSTRUCT` Queries
+
+* Any names accepted by the [org.apache.jena.rdf.model.Model.write](https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/rdf/model/Model.html#write-java.io.OutputStream-java.lang.String-) method (i.e., "turtle", "n-triples", etc.)
