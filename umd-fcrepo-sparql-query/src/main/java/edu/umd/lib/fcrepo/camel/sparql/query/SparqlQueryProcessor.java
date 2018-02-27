@@ -15,6 +15,7 @@ import org.apache.jena.query.ResultSet;
 import org.apache.jena.query.ResultSetFormatter;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.shared.NoWriterForLangException;
 import org.apache.jena.sparql.resultset.ResultsFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,18 +60,29 @@ public class SparqlQueryProcessor implements Processor {
     // Execute the query and obtain results
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     try (QueryExecution qe = QueryExecutionFactory.create(q, model)) {
-      ResultSet results = qe.execSelect();
+      if (q.isSelectType()) {
+        ResultSet results = qe.execSelect();
 
-      ResultsFormat resultsFormat = ResultsFormat.lookup(resultsFormatName);
-      if (resultsFormat == null) {
-        if ((resultsFormatName != null) && CSV_WITHOUT_HEADER.toLowerCase().equals(resultsFormatName.toLowerCase())) {
-          CsvWithoutHeaderOutput csvOutput = new CsvWithoutHeaderOutput();
-          csvOutput.format(out, results);
+        ResultsFormat resultsFormat = ResultsFormat.lookup(resultsFormatName);
+        if (resultsFormat == null) {
+          if ((resultsFormatName != null) && CSV_WITHOUT_HEADER.toLowerCase().equals(resultsFormatName.toLowerCase())) {
+            CsvWithoutHeaderOutput csvOutput = new CsvWithoutHeaderOutput();
+            csvOutput.format(out, results);
+          } else {
+            throw new IllegalArgumentException("Unknown resultFormatName: " + resultsFormatName);
+          }
         } else {
+          ResultSetFormatter.output(out, results, resultsFormat);
+        }
+      } else if (q.isConstructType()) {
+        Model results = qe.execConstruct();
+        try {
+          results.write(out, resultsFormatName);
+        } catch (NoWriterForLangException e) {
           throw new IllegalArgumentException("Unknown resultFormatName: " + resultsFormatName);
         }
       } else {
-        ResultSetFormatter.output(out, results, resultsFormat);
+        throw new IllegalArgumentException("Only SELECT and CONSTRUCT queries are allowed as values of query");
       }
     }
 
