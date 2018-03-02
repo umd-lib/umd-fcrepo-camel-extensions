@@ -28,18 +28,18 @@
         <version>1.3.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>umd-fcrepo-broadcast</artifactId>
+    <artifactId>umd-fcrepo-notification</artifactId>
     <packaging>bundle</packaging>
 
-    <name>UMD Fcrepo Broadcast</name>
-    <description>UMD Fcrepo Broadcast Project.</description>
+    <name>UMD Fcrepo Notification</name>
+    <description>UMD Fcrepo Notification Project.</description>
 
     <properties>
         <osgi.import.packages>
-            *
+         *
         </osgi.import.packages>
         <osgi.export.packages>
-            edu.umd.lib.fcrepo.camel.broadcast*;version=${project.version}
+            edu.umd.lib.fcrepo.camel.notification;version=${project.version}
         </osgi.export.packages>
     </properties>
 
@@ -59,6 +59,34 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>
         </dependency>
+        
+    	<dependency>
+      		<groupId>org.apache.camel</groupId>
+      		<artifactId>camel-blueprint</artifactId>
+		</dependency>
+        
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+
+
+        <!-- testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>org.apache.camel</groupId>
+        	<artifactId>camel-mail</artifactId>
+        	<version>2.18.0</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.apache.jena</groupId>
+        	<artifactId>jena-core</artifactId>
+        	<version>3.1.1</version>
+		</dependency>
     </dependencies>
 
     <build>
