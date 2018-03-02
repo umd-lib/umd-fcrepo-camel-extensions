@@ -57,4 +57,9 @@
     <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-sparql-query/${project.version}</bundle>
   </feature>
 
+  <feature name="umd-fcrepo-triplestore" version="${project.version}">
+    <details>Installs the UMD triplestore service.</details>
+
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-triplestore/${project.version}</bundle>
+  </feature>
 </features>

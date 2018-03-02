@@ -56,6 +56,7 @@
         <module>umd-features</module>
         <module>umd-fcrepo-broadcast</module>
         <module>umd-fcrepo-sparql-query</module>
+        <module>umd-fcrepo-triplestore</module>
     </modules>
 
     <dependencyManagement>
