@@ -26,11 +26,11 @@ but this is entirely arbitrary.
 
 ```
 # Which queue/topic to listen to on the above broker
-input.stream=activemq:queue:fixityfailure
+input.stream=activemq:queue:fixitysuccess
 
 # Comma separated list of recipient queues to broadcast the incoming messages to
 # for example: "broker:queue:fcrepo-serialization,broker:queue:fcrepo-indexing-triplestore"
-message.recipients=file:/tmp/?fileName=umd-broadcast-fixityfailure.log&fileExist=Append,file:/tmp/?fileName=fixityfailure.log&fileExist=Append
+message.recipients=file:/tmp/?fileName=umd-broadcast-fixitysuccess.log&fileExist=Append,file:/tmp/?fileName=fixitysuccess.log&fileExist=Append
 
 # In the event of failure, the maximum number of times a redelivery will be attempted.
 error.maxRedeliveries=10
