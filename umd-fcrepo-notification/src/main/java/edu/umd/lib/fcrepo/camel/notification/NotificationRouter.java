@@ -9,23 +9,24 @@ import org.slf4j.Logger;
 
 public class NotificationRouter extends RouteBuilder  {
 
-	private static final Logger LOGGER = getLogger(NotificationRouter.class);
-	
-	 public void configure() throws Exception {
+  private static final Logger LOGGER = getLogger(NotificationRouter.class);
 
-	        /**
-	         * A generic error handler (specific to this RouteBuilder)
-	         */
-	        onException(Exception.class)
-	            .maximumRedeliveries("{{error.maxRedeliveries}}")
-	            .log("Index Routing Error: ${routeId}");
+  @Override
+  public void configure() throws Exception {
 
-	        /**
-	         * Handle fixity events
-	         */
-	        from("{{notification.sender}}")
-	        	.log(LoggingLevel.WARN, LOGGER,
-	        		"Sending to ${{notification.recipient}}")
-	                    .to("{{notification.recipient}}");
-	    }
+    /**
+     * A generic error handler (specific to this RouteBuilder)
+     */
+    onException(Exception.class)
+    .maximumRedeliveries("{{error.maxRedeliveries}}")
+    .log("Index Routing Error: ${routeId}");
+
+    /**
+     * Handle fixity events
+     */
+    from("{{input.stream}}")
+    .log(LoggingLevel.WARN, LOGGER,
+        "Sending to ${{notification.recipient}}")
+    .to("{{notification.recipient}}");
+  }
 }
