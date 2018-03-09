@@ -3,7 +3,10 @@ package edu.umd.lib.fcrepo.camel.notification;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
+import org.apache.camel.Message;
+import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 
@@ -25,8 +28,20 @@ public class NotificationRouter extends RouteBuilder  {
      * Handle fixity events
      */
     from("{{input.stream}}")
-    .log(LoggingLevel.WARN, LOGGER,
-        "Sending to ${{notification.recipient}}")
-    .to("{{notification.recipient}}");
+    .routeId("Notification {{input.stream}}")
+    .log(LoggingLevel.INFO, LOGGER, "Sending to {{notification.recipients}}")
+    .process(new NotificationMessageBuilder())
+    .to("smtp://localhost?to={{notification.recipients}}&subject={{notification.subject}}");
+  }
+
+  private class NotificationMessageBuilder implements Processor {
+
+    @Override
+    public void process(Exchange exchange) throws Exception {
+      Message in = exchange.getIn();
+      in.setBody("Fixity check for: " + in.getHeader("CamelFcrepoUri"));
+      LOGGER.info((String) in.getBody());
+    }
+
   }
 }

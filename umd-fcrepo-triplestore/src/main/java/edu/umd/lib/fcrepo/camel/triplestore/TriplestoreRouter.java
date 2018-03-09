@@ -68,8 +68,7 @@ public class TriplestoreRouter {
         .routeId("Triplestore " + inputStream)
         .description("Send RDF triples to a triplestore.")
         .process(new SparqlInsertDataWrapper())
-        .to(triplestoreBaseUrl + "?useSystemProperties=true")
-        .to("file:/tmp?fileName=audit.sparql");
+        .to(triplestoreBaseUrl + "?useSystemProperties=true");
       }
     };
   }
