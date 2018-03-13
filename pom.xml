@@ -57,6 +57,7 @@
         <module>umd-fcrepo-broadcast</module>
         <module>umd-fcrepo-sparql-query</module>
         <module>umd-fcrepo-triplestore</module>
+        <module>umd-fcrepo-notification</module>
     </modules>
 
     <dependencyManagement>
