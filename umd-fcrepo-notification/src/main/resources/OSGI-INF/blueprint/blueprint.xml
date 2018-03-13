@@ -11,8 +11,7 @@
    <cm:property-placeholder id="properties" persistent-id="edu.umd.lib.fcrepo.camel.notification" update-strategy="reload">
      <cm:default-properties>
        <cm:property name="error.maxRedeliveries" value="10"/>
-       <cm:property name="notification.recipient" value=""/>
-       <cm:property name="notification.subject" value=""/>
+       <cm:property name="notification.recipients" value=""/>
        <cm:property name="input.stream" value="activemq:queue:fixityfailure"/>
      
      </cm:default-properties>

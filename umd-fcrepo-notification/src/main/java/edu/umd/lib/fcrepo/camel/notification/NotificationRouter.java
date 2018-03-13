@@ -22,7 +22,7 @@ public class NotificationRouter extends RouteBuilder  {
      */
     onException(Exception.class)
     .maximumRedeliveries("{{error.maxRedeliveries}}")
-    .log("Index Routing Error: ${routeId}");
+    .log("Notification Routing Error: ${routeId}");
 
     /**
      * Handle fixity events
@@ -30,18 +30,16 @@ public class NotificationRouter extends RouteBuilder  {
     from("{{input.stream}}")
     .routeId("Notification {{input.stream}}")
     .log(LoggingLevel.INFO, LOGGER, "Sending to {{notification.recipients}}")
-    .process(new NotificationMessageBuilder())
-    .to("smtp://localhost?to={{notification.recipients}}&subject={{notification.subject}}");
+    .process(new Processor() { 
+    	public void process(Exchange exchange) throws Exception {
+    		Message in = exchange.getIn();
+    		String body = in.getBody(String.class);
+    		String uri = (String) in.getHeader("CamelFcrepoUri");
+    		exchange.getOut().setBody("Notification for the following URI: " + uri + "\n\n\n" + body );
+    	}
+    })
+    .to("{{notification.recipients}}");
   }
 
-  private class NotificationMessageBuilder implements Processor {
-
-    @Override
-    public void process(Exchange exchange) throws Exception {
-      Message in = exchange.getIn();
-      in.setBody("Fixity check for: " + in.getHeader("CamelFcrepoUri"));
-      LOGGER.info((String) in.getBody());
-    }
-
-  }
+ 
 }
