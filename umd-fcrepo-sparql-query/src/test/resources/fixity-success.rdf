@@ -1,0 +1,59 @@
+<rdf:RDF
+    xmlns:sc="http://www.shared-canvas.org/ns/"
+    xmlns:acl="http://www.w3.org/ns/auth/acl#"
+    xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+    xmlns:exif="http://www.w3.org/2003/12/exif/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:pcdmfmt="http://pcdm.org/file-format-types#"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:pcdmwrks="http://pcdm.org/works#"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+    xmlns:oa="http://www.w3.org/ns/oa#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rel="http://id.loc.gov/vocabulary/relators/"
+    xmlns:dwc="http://rs.tdwg.org/dwc/terms/"
+    xmlns:test="info:fedora/test/"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:audit="http://fedora.info/definitions/v4/audit#"
+    xmlns:ore="http://www.openarchives.org/ore/terms/"
+    xmlns:islandorarelsint="http://islandora.ca/ontology/relsint#"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:pcdmrts="http://pcdm.org/rights#"
+    xmlns:fedoraconfig="http://fedora.info/definitions/v4/config#"
+    xmlns:carriers="http://id.loc.gov/vocabulary/carriers/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:authz="http://fedora.info/definitions/v4/authorization#"
+    xmlns:ndnp="http://chroniclingamerica.loc.gov/terms/"
+    xmlns:iana="http://www.iana.org/assignments/relation/"
+    xmlns:schema="http://schema.org/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:webac="http://fedora.info/definitions/v4/webac#"
+    xmlns:fedoramodel="info:fedora/fedora-system:def/model#"
+    xmlns:gn="http://www.geonames.org/ontology#"
+    xmlns:islandorarelsext="http://islandora.ca/ontology/relsext#"
+    xmlns:ebucore="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#"
+    xmlns:premis="http://www.loc.gov/premis/rdf/v1#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:dcmitype="http://purl.org/dc/dcmitype/"
+    xmlns:fedora="http://fedora.info/definitions/v4/repository#"
+    xmlns:pcdmuse="http://pcdm.org/use#"
+    xmlns:nfo="http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bibo="http://purl.org/ontology/bibo/"
+    xmlns:fabio="http://purl.org/spar/fabio/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:pcdm="http://pcdm.org/models#" >
+  <rdf:Description rdf:about="https://fcrepolocal/fcrepo/rest/pcdm/fc/75/16/91/fc751691-b55e-46d9-b7da-a5c7bf3f40f3#fixity/1512758476451">
+    <premis:hasSize rdf:datatype="http://www.w3.org/2001/XMLSchema#long">32277709</premis:hasSize>
+    <premis:hasMessageDigest rdf:resource="urn:sha1:b267e0490a0985ff7a721858b01e354a12e63cac"/>
+    <premis:hasMessageDigestAlgorithm>SHA-1</premis:hasMessageDigestAlgorithm>
+    <premis:hasEventOutcome>SUCCESS</premis:hasEventOutcome>
+    <rdf:type rdf:resource="http://www.loc.gov/premis/rdf/v1#EventOutcomeDetail"/>
+    <rdf:type rdf:resource="http://www.loc.gov/premis/rdf/v1#Fixity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://fcrepolocal/fcrepo/rest/pcdm/fc/75/16/91/fc751691-b55e-46d9-b7da-a5c7bf3f40f3">
+    <premis:hasFixity rdf:resource="https://fcrepolocal/fcrepo/rest/pcdm/fc/75/16/91/fc751691-b55e-46d9-b7da-a5c7bf3f40f3#fixity/1512758476451"/>
+  </rdf:Description>
+</rdf:RDF>

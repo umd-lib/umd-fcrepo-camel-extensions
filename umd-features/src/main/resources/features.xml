@@ -45,4 +45,26 @@
     <configfile finalname="/etc/edu.umd.lib.fcrepo.camel.ldcache.file.cfg">mvn:edu.umd.lib.fcrepo/umd-fcrepo-batch-ldcache-file/${project.version}/cfg/configuration</configfile>
   </feature>
 
+  <feature name="umd-fcrepo-broadcast" version="${project.version}">
+    <details>Installs the UMD broadcast service.</details>
+
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-broadcast/${project.version}</bundle>
+  </feature>
+
+  <feature name="umd-fcrepo-sparql-query" version="${project.version}">
+    <details>Installs the UMD SPARQL query service.</details>
+
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-sparql-query/${project.version}</bundle>
+  </feature>
+
+  <feature name="umd-fcrepo-triplestore" version="${project.version}">
+    <details>Installs the UMD triplestore service.</details>
+
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-triplestore/${project.version}</bundle>
+  </feature>
+  
+  <feature name="umd-fcrepo-notification" version="${project.version}">
+    <details>Installs the UMD Notification</details>
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-notification/${project.version}</bundle>
+  </feature>
 </features>

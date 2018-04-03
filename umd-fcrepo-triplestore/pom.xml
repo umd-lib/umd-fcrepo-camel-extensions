@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <!--
         Licensed to the Apache Software Foundation (ASF) under one or more
@@ -26,23 +28,36 @@
         <version>1.3.0</version>
     </parent>
 
-    <artifactId>umd-fcrepo-ldpath-blueprint</artifactId>
+    <artifactId>umd-fcrepo-triplestore</artifactId>
     <packaging>bundle</packaging>
 
-    <name>UMD Fcrepo Ldpath Blueprint</name>
-    <description>UMD Fcrepo Ldpath Blueprint Project.</description>
+    <name>UMD Fcrepo Triplestore</name>
+    <description>UMD Fcrepo Triplestore Project.</description>
 
     <properties>
         <osgi.import.packages>
-            org.fcrepo.camel.ldpath;version=${project.version},
             *
         </osgi.import.packages>
+        <osgi.export.packages>
+            edu.umd.lib.fcrepo.camel.triplestore*;version=${project.version}
+        </osgi.export.packages>
     </properties>
 
     <dependencies>
+        <!-- OSGI -->
         <dependency>
-            <groupId>org.fcrepo.camel</groupId>
-            <artifactId>fcrepo-ldpath</artifactId>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+        </dependency>
+
+        <!-- Apache Camel -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core</artifactId>
         </dependency>
     </dependencies>
 
@@ -52,29 +67,6 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-artifacts</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>attach-artifact</goal>
-                        </goals>
-                        <configuration>
-                            <artifacts>
-                                <artifact>
-                                    <file>src/main/cfg/edu.umd.lib.fcrepo.camel.ldpath.cfg</file>
-                                    <type>cfg</type>
-                                    <classifier>configuration</classifier>
-                                </artifact>
-                            </artifacts>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
-
 </project>
