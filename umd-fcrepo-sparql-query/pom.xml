@@ -67,6 +67,13 @@
             <type>pom</type>
         </dependency>
         
+        <dependency>
+            <groupId>edu.umd.lib</groupId>
+            <artifactId>umd-osgi-extensions</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
+        
         <!-- testing -->
         <dependency>
             <groupId>junit</groupId>
