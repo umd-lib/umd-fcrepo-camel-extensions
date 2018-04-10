@@ -36,8 +36,8 @@ public abstract class AbstractManagedServiceFactory<T extends AbstractManagedSer
 
   protected BundleContext bundleContext;
   protected CamelContext camelContext;
-  protected ServiceRegistration registration;
-  protected ServiceTracker tracker;
+  protected ServiceRegistration<?> registration;
+  protected ServiceTracker<T, T> tracker;
   protected String configurationPid;
   protected Map<String, T> dispatchEngines = Collections.synchronizedMap(new HashMap<String, T>());
 
@@ -131,7 +131,7 @@ public abstract class AbstractManagedServiceFactory<T extends AbstractManagedSer
     Dictionary<String, String> servProps = new Hashtable<String, String>();
     servProps.put(Constants.SERVICE_PID, configurationPid);
     registration = bundleContext.registerService(ManagedServiceFactory.class.getName(), this, servProps);
-    tracker = new ServiceTracker(bundleContext, ConfigurationAdmin.class.getName(), null);
+    tracker = new ServiceTracker<T, T>(bundleContext, ConfigurationAdmin.class.getName(), null);
     tracker.open();
     log.info("Started " + this.getName());
   }
@@ -140,7 +140,7 @@ public abstract class AbstractManagedServiceFactory<T extends AbstractManagedSer
    * Destroy method called via the blueprint
    */
   public void destroy() {
-    log.info("Destroying SparqlQueryFactory " + configurationPid);
+    log.info("Destroying " + this.getName());
     registration.unregister();
     tracker.close();
   }
@@ -173,5 +173,14 @@ public abstract class AbstractManagedServiceFactory<T extends AbstractManagedSer
    */
   public void setCamelContext(CamelContext camelContext) {
     this.camelContext = camelContext;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+    builder.append(this.getClass().getName() + " [configurationPid=");
+    builder.append(configurationPid);
+    builder.append("]");
+    return builder.toString();
   }
 }

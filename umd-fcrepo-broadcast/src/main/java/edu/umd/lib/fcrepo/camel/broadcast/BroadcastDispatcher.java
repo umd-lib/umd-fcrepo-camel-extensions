@@ -8,11 +8,6 @@ import edu.umd.lib.osgi.service.AbstractManagedServiceInstance;
 
 /**
  * A broadcast service instance, typically created and controlled via the BroadcastFactory.
- *
- * This implementation is inspired by the code in Chapter 2, Recipe 6 of
- *
- * Nierbeck A., "Apache Karaf Cookbook : Over 60 Recipes to Help You Get the Most Out of Apache Karaf Deployments.",
- * Birmingham, UK: Packt Pub; 2014.
  */
 public class BroadcastDispatcher extends AbstractManagedServiceInstance {
   private Logger log = LoggerFactory.getLogger(BroadcastDispatcher.class);

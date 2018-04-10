@@ -13,4 +13,30 @@ of the project:
     <version>${project.version}</version>
     <type>jar</type>
 </dependency>
-``` 
+```
+
+If using with a Karaf feature, include this bundle as a dependency in
+the "features.xml" file (such as umd-features/src/main/resources/features.xml):
+
+```
+  <feature name="..." version="${project.version}">
+    ...
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-osgi-extensions/${project.version}</bundle>
+  </feature>
+```
+
+## AbstractManagedServiceFactory/AbstractManagedServiceInstance
+
+These abstract classes can be subclassed to create OSGI services that
+allow multiple instances to be created by adding an appropriate
+configuration file to the Karaf etc/ directory.
+
+See the following projects for example usage:
+
+* umd-fcrepo-broadcast
+* umd-fcrepo-sparql-query
+* umd-fcrep-triplestore
+
+
+
+

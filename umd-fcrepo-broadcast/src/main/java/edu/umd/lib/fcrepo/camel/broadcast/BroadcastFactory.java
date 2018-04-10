@@ -12,11 +12,6 @@ import edu.umd.lib.osgi.service.AbstractManagedServiceFactory;
 
 /**
  * ManagedServiceFactory implementation for creating BroadcastDispatcher instances.
- *
- * This implementation is inspired by the code in Chapter 2, Recipe 6 of
- *
- * Nierbeck A., "Apache Karaf Cookbook : Over 60 Recipes to Help You Get the Most Out of Apache Karaf Deployments.",
- * Birmingham, UK: Packt Pub; 2014.
  */
 public class BroadcastFactory extends AbstractManagedServiceFactory<BroadcastDispatcher> {
   private Logger log = LoggerFactory.getLogger(BroadcastFactory.class);
