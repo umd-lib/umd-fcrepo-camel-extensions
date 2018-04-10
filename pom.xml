@@ -58,6 +58,7 @@
         <module>umd-fcrepo-sparql-query</module>
         <module>umd-fcrepo-triplestore</module>
         <module>umd-fcrepo-notification</module>
+        <module>umd-osgi-extensions</module>
     </modules>
 
     <dependencyManagement>

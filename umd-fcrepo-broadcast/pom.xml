@@ -59,6 +59,13 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>
         </dependency>
+        
+        <dependency>
+            <groupId>edu.umd.lib.fcrepo</groupId>
+            <artifactId>umd-osgi-extensions</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>
