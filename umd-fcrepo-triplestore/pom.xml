@@ -61,10 +61,9 @@
         </dependency>
         
         <dependency>
-            <groupId>edu.umd.lib</groupId>
+            <groupId>edu.umd.lib.fcrepo</groupId>
             <artifactId>umd-osgi-extensions</artifactId>
             <version>${project.version}</version>
-            <type>jar</type>
         </dependency>
     </dependencies>
 
