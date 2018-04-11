@@ -36,7 +36,18 @@ See the following projects for example usage:
 * umd-fcrepo-broadcast
 * umd-fcrepo-sparql-query
 * umd-fcrep-triplestore
+* umd-fcrepo-notification
 
+### Instance Route Ids
+
+When creating multiple instances, it is _critical_ that the "route id"
+of the instance be unique. If two instances have the same route id, one
+of the instances will overwrite the other (exactly which one "wins"
+is arbitrary).
+
+In the above services, it is assumed that the the input stream for an
+instance will always be unique, so the route id is created from a
+combination of the service name, and the input stream. 
 
 
 

@@ -1,8 +1,6 @@
 package edu.umd.lib.fcrepo.camel.broadcast;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import edu.umd.lib.osgi.service.AbstractManagedServiceInstance;
 
@@ -10,8 +8,6 @@ import edu.umd.lib.osgi.service.AbstractManagedServiceInstance;
  * A broadcast service instance, typically created and controlled via the BroadcastFactory.
  */
 public class BroadcastDispatcher extends AbstractManagedServiceInstance {
-  private Logger log = LoggerFactory.getLogger(BroadcastDispatcher.class);
-
   private String inputStream;
   private String messageRecipients;
 
@@ -62,9 +58,7 @@ public class BroadcastDispatcher extends AbstractManagedServiceInstance {
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    builder.append(this.getClass().getName() + " [log=");
-    builder.append(log);
-    builder.append(", inputStream=");
+    builder.append(this.getClass().getName() + " [inputStream=");
     builder.append(inputStream);
     builder.append(", messageRecipients=");
     builder.append(messageRecipients);
