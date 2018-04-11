@@ -7,18 +7,18 @@
        http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
        http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
 
-   <!-- OSGI blueprint property placeholder -->
-   <cm:property-placeholder id="properties" persistent-id="edu.umd.lib.fcrepo.camel.notification" update-strategy="reload">
-     <cm:default-properties>
-       <cm:property name="error.maxRedeliveries" value="10"/>
-       <cm:property name="notification.recipients" value=""/>
-       <cm:property name="input.stream" value="activemq:queue:fixityfailure"/>
-     
-     </cm:default-properties>
-   </cm:property-placeholder>
-
-  <camelContext id="FcrepoNotification" xmlns="http://camel.apache.org/schema/blueprint">
-    <package>edu.umd.lib.fcrepo.camel.notification</package>
+  <cm:property-placeholder persistent-id="edu.umd.lib.fcrepo.camel.notification" update-strategy="reload">
+      <cm:default-properties>
+        <cm:property name="edu.umd.lib.fcrepo.camel.notification.pid" value="edu.umd.lib.fcrepo.camel.notification"/>
+      </cm:default-properties>
+  </cm:property-placeholder>
+  
+  <camelContext id="FcrepoNotification" xmlns="http://camel.apache.org/schema/blueprint" autoStartup="true">
   </camelContext>
-
+  
+  <bean id="notification" class="edu.umd.lib.fcrepo.camel.notification.NotificationFactory" init-method="init" destroy-method="destroy">
+    <property name="bundleContext" ref="blueprintBundleContext"/>
+    <property name="configurationPid" value="${edu.umd.lib.fcrepo.camel.notification.pid}"/>
+    <property name="camelContext" ref="FcrepoNotification"/>
+  </bean>
 </blueprint>
