@@ -145,6 +145,12 @@
 
   <bean id="batchLdpath" class="org.fcrepo.camel.ldpath.LDPathWrapper">
     <argument ref="batchLdcachebackend"/>
+    <argument>
+      <set>
+        <bean class="org.apache.marmotta.ldpath.model.functions.ConcatenateFunction"/>
+        <bean class="org.apache.marmotta.ldpath.model.functions.FirstFunction"/>
+      </set>
+    </argument>
   </bean>
 
   <camelContext id="FcrepoLDPathContext" depends-on="ldpath" xmlns="http://camel.apache.org/schema/blueprint">
