@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+  
+    <parent>
+        <groupId>edu.umd.lib.fcrepo</groupId>
+        <artifactId>umd-fcrepo-camel-extensions</artifactId>
+       <version>1.4.0</version>
+    </parent>
+  
+    <artifactId>umd-osgi-extensions</artifactId>
+    <packaging>bundle</packaging>
+    <name>UMD OSGI Extensions</name>
+    <description>UMD Libraries Extensions for OSGI</description>
+  
+    <properties>
+        <osgi.import.packages>
+            *
+        </osgi.import.packages>
+        <osgi.export.packages>
+            edu.umd.lib.osgi.service*;version=${project.version}
+        </osgi.export.packages>
+    </properties>
+  
+    <dependencies>
+        <!-- OSGI -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+        </dependency>
+    
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+        </dependency>
+  
+        <!-- Apache Camel -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core</artifactId>
+        </dependency>
+    </dependencies>
+  
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

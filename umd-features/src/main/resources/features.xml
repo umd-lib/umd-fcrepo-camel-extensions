@@ -49,18 +49,21 @@
     <details>Installs the UMD broadcast service.</details>
 
     <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-broadcast/${project.version}</bundle>
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-osgi-extensions/${project.version}</bundle>
   </feature>
 
   <feature name="umd-fcrepo-sparql-query" version="${project.version}">
     <details>Installs the UMD SPARQL query service.</details>
 
     <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-sparql-query/${project.version}</bundle>
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-osgi-extensions/${project.version}</bundle>
   </feature>
 
   <feature name="umd-fcrepo-triplestore" version="${project.version}">
     <details>Installs the UMD triplestore service.</details>
 
     <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-triplestore/${project.version}</bundle>
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-osgi-extensions/${project.version}</bundle>
   </feature>
   
   <feature name="umd-fcrepo-notification" version="${project.version}">

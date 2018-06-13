@@ -9,7 +9,7 @@ sending the query results to the "output.stream" queue/topic.
 ## Configuration
 
 A service instance is created by adding an
-`edu.umd.lib.fcrepo.camel.sparql.query-[ROUTE_IDENTIFIER.cfg` file
+`edu.umd.lib.fcrepo.camel.sparql.query-[ROUTE_IDENTIFIER.cfg]` file
 into the Karaf etc/ directory, where `[ROUTE_IDENTIFIER]` is a unique name for
 the route.
 

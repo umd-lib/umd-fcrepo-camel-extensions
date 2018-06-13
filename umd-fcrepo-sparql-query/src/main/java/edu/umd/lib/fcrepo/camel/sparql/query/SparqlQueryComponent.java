@@ -1,9 +1,8 @@
 package edu.umd.lib.fcrepo.camel.sparql.query;
 
-import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import edu.umd.lib.osgi.service.AbstractManagedServiceInstance;
 
 /**
  * A component that runs a SPARQL query against the input, and sending the result to the specified output.
@@ -13,33 +12,13 @@ import org.slf4j.LoggerFactory;
  * "turtle", "n-triples" etc.), or a "csvWithoutHeader" format, which the same as the
  * "csv" format, except it does not print the header.
  */
-public class SparqlQueryComponent {
-
+public class SparqlQueryComponent extends AbstractManagedServiceInstance {
   private String inputStream;
   private String outputStream;
   private String query;
   private String resultsFormatName;
 
-  private RouteBuilder rb;
-  private CamelContext cc;
-
-  private Logger log = LoggerFactory.getLogger(SparqlQueryComponent.class);
-
   public SparqlQueryComponent() {
-  }
-
-  /**
-   * Builds and starts the SPARQL query route.
-   */
-  public void start() {
-    try {
-      rb = buildSparqlQueryProcessor();
-      log.info("Route " + rb + " starting...");
-      cc.start();
-      cc.addRoutes(rb);
-    } catch (Exception ex) {
-      log.error("Could not create SPARQL query route " + ex);
-    }
   }
 
   /**
@@ -49,7 +28,8 @@ public class SparqlQueryComponent {
    * @throws Exception
    *           if an exception occurs.
    */
-  protected RouteBuilder buildSparqlQueryProcessor() throws Exception {
+  @Override
+  protected RouteBuilder buildRoute() throws Exception {
     return new RouteBuilder() {
       @Override
       public void configure() throws Exception {
@@ -62,29 +42,6 @@ public class SparqlQueryComponent {
             .to(outputStream);
       }
     };
-  }
-
-  /**
-   * Stops the SPARQL query route.
-   */
-  public void stop() {
-    if (rb != null) {
-      try {
-        cc.removeRoute(rb.toString());
-      } catch (Exception e) {
-        log.error("Could not remove route " + rb + " " + e);
-      }
-    }
-  }
-
-  /**
-   * Sets the CamelContext for the route.
-   *
-   * @param cc
-   *          the CamelContext for the route.
-   */
-  public void setCamelContext(CamelContext cc) {
-    this.cc = cc;
   }
 
   /**
@@ -128,5 +85,22 @@ public class SparqlQueryComponent {
    */
   public void setResultsFormat(String resultsFormatName) {
     this.resultsFormatName = resultsFormatName;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+    builder.append(this.getClass().getName() + " [inputStream=");
+    builder.append(inputStream);
+    builder.append(", outputStream=");
+    builder.append(outputStream);
+    builder.append(", query=");
+    builder.append(query);
+    builder.append(", resultsFormatName=");
+    builder.append(resultsFormatName);
+    builder.append(", routeId=");
+    builder.append(routeId);
+    builder.append("]");
+    return builder.toString();
   }
 }
