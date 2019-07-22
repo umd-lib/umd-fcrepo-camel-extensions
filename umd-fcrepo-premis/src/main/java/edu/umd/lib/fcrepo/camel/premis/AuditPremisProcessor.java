@@ -70,8 +70,10 @@ public class AuditPremisProcessor implements Processor {
         final String eventURIBase = in.getHeader(EVENT_BASE_URI, String.class);
         final String eventID = in.getHeader(FCREPO_EVENT_ID, String.class);
         final Resource eventURI = createResource(eventURIBase + "/" + eventID);
+        final Optional<String> premisType = getAuditEventType(getEventTypes(in), getResourceTypes(in));
 
         // update exchange
+        premisType.ifPresent(rdfType -> { in.setHeader("CamelAuditEventType", rdfType); });
         in.setBody(serializedGraphForMessage(in, eventURI));
         in.setHeader(EVENT_URI, eventURI.toString());
         in.setHeader(Exchange.CONTENT_TYPE, "application/n-triples");
@@ -97,6 +99,14 @@ public class AuditPremisProcessor implements Processor {
         }
     }
 
+    private static List<String> getEventTypes(final Message message) {
+        return parseStringToList(message.getHeader(FCREPO_EVENT_TYPE, String.class));
+    }
+
+    private static List<String> getResourceTypes(final Message message) {
+        return parseStringToList(message.getHeader(FCREPO_RESOURCE_TYPE, String.class));
+    }
+
     /**
      * Convert a Camel message to audit event description.
      * @param message Camel message produced by an audit event
@@ -109,13 +119,11 @@ public class AuditPremisProcessor implements Processor {
         final Model model = createDefaultModel();
 
         // get info from jms message headers
-        final List<String> eventTypes = parseStringToList(message.getHeader(FCREPO_EVENT_TYPE, String.class));
         final String dateTime = message.getHeader(FCREPO_DATE_TIME, EMPTY_STRING, String.class);
         final String user = message.getHeader("CamelFcrepoUser", String.class);
         final String userAgent = message.getHeader("CamelFcrepoUserAgent", String.class);
-        final List<String> resourceTypes = parseStringToList(message.getHeader(FCREPO_RESOURCE_TYPE, String.class));
         final String identifier = message.getHeader(FCREPO_URI, EMPTY_STRING, String.class);
-        final Optional<String> premisType = getAuditEventType(eventTypes, resourceTypes);
+        final Optional<String> premisType = getAuditEventType(getEventTypes(message), getResourceTypes(message));
 
         model.add( model.createStatement(subject, type, INTERNAL_EVENT) );
         model.add( model.createStatement(subject, type, PREMIS_EVENT) );
