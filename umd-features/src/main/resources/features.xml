@@ -70,4 +70,11 @@
     <details>Installs the UMD Notification</details>
     <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-notification/${project.version}</bundle>
   </feature>
+
+  <feature name="umd-fcrepo-premis" version="${project.version}">
+    <details>Installs the UMD PREMIS event service.</details>
+
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-fcrepo-premis/${project.version}</bundle>
+    <bundle>mvn:edu.umd.lib.fcrepo/umd-osgi-extensions/${project.version}</bundle>
+  </feature>
 </features>

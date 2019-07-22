@@ -32,6 +32,8 @@ public class Router extends RouteBuilder {
 
   private static final String JMS_USER = "org.fcrepo.jms.user";
 
+  private static final String JMS_USER_AGENT = "org.fcrepo.jms.userAgent";
+
   private static final String JMS_EVENT_TYPE = "org.fcrepo.jms.eventType";
 
   private static final String JMS_RESOURCE_TYPE = "org.fcrepo.jms.resourceType";
@@ -56,15 +58,20 @@ public class Router extends RouteBuilder {
     .log("Routing Error: ${routeId}");
 
 
-    /**
+    /*
      * extract Fedora-specific message information from the body and turn it into headers, then
      * send for further message routing
      */
     from("broker:{{input.queue.name}}")
         .routeId("UmdFcrepoEventRouter")
         .process(new EventProcessor())
+        .setHeader("CamelFcrepoUser", simple(headerString(JMS_USER)))
+        .setHeader("CamelFcrepoUserAgent", simple(headerString(JMS_USER_AGENT)))
+        .setHeader("CamelFcrepoEventType", simple(headerString(JMS_EVENT_TYPE)))
+        .setHeader("CamelFcrepoResourceType", simple(headerString(JMS_RESOURCE_TYPE)))
+        .log(LoggingLevel.DEBUG, logger, "Event user: " + headerString("CamelFcrepoUser"))
+        .log(LoggingLevel.DEBUG, logger, "Event user agent: " + headerString("CamelFcrepoUserAgent"))
         .log(LoggingLevel.INFO, logger, "Routing event with id: " + headerString(JMS_IDENTIFIER))
-        .log(LoggingLevel.DEBUG, logger, "Event user: " + headerString(JMS_USER))
         .recipientList(simple("direct:all,direct:binary"))
         .ignoreInvalidEndpoints();
     
