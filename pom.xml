@@ -22,7 +22,7 @@
 
     <groupId>edu.umd.lib.fcrepo</groupId>
     <artifactId>umd-fcrepo-camel-extensions</artifactId>
-    <version>1.5.0</version>
+    <version>1.6.0</version>
     <packaging>pom</packaging>
 
     <name>UMD Fcrepo Camel Extensions</name>
@@ -42,7 +42,7 @@
         <marmotta.version>3.3.0</marmotta.version>
         <jena.version>3.5.0</jena.version>
         <fcrepo-camel.version>4.5.0</fcrepo-camel.version>
-        <fcrepo-camel-toolbox.version>4.7.2-umd-1.0</fcrepo-camel-toolbox.version>
+        <fcrepo-camel-toolbox.version>4.8.0</fcrepo-camel-toolbox.version>
         <fcrepo-java-client.version>0.2.1</fcrepo-java-client.version>
         <logback.version>1.1.7</logback.version>
         <slf4j.version>1.7.20</slf4j.version>
@@ -59,6 +59,7 @@
         <module>umd-fcrepo-triplestore</module>
         <module>umd-fcrepo-notification</module>
         <module>umd-osgi-extensions</module>
+      <module>umd-fcrepo-premis</module>
     </modules>
 
     <dependencyManagement>
