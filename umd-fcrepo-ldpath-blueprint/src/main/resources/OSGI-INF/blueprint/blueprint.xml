@@ -61,6 +61,20 @@
     <argument index="2" type="java.lang.String" value="${fcrepo.authHostname}"/>
   </bean>
 
+  <bean id="vocabulariesEndpoint" class="org.apache.marmotta.ldclient.api.endpoint.Endpoint">
+    <property name="name" value="Vocabularies"/>
+    <property name="type" value="Linked Data"/>
+    <property name="uriPattern" value="http://vocab.lib.umd.edu/.*"/>
+    <property name="contentTypes">
+      <set>
+        <bean class="org.apache.marmotta.commons.http.ContentType">
+          <argument type="java.lang.String" value="application"/>
+          <argument type="java.lang.String" value="ld+json"/>
+        </bean>
+      </set>
+    </property>
+  </bean>
+
   <bean id="client" class="org.fcrepo.camel.ldpath.ClientFactory" factory-method="createClient">
     <argument ref="authScope"/>
     <argument ref="credentials"/>
@@ -71,6 +85,7 @@
           <argument index="0" type="java.lang.String" value="${fcrepo.baseUrl}"/>
           <argument index="1" type="java.lang.Long" value="${fcrepo.cache.timeout}"/>
         </bean>
+        <ref component-id="vocabulariesEndpoint"/>
       </list>
     </argument>
     <!-- List of optional providers -->
@@ -117,6 +132,7 @@
           <argument index="0" type="java.lang.String" value="${fcrepo.baseUrl}"/>
           <argument index="1" type="java.lang.Long" value="${fcrepo.batch.cache.timeout}"/>
         </bean>
+        <ref component-id="vocabulariesEndpoint"/>
       </list>
     </argument>
     <!-- List of optional providers -->
