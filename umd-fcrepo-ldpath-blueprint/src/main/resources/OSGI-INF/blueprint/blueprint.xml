@@ -63,7 +63,7 @@
 
   <bean id="vocabulariesEndpoint" class="org.apache.marmotta.ldclient.api.endpoint.Endpoint">
     <property name="name" value="Vocabularies"/>
-    <property name="type" value="Vocabularies"/>
+    <property name="type" value="Linked Data"/>
     <property name="uriPattern" value="http://vocab.lib.umd.edu/.*"/>
     <property name="contentTypes">
       <set>
